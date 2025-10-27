@@ -23,7 +23,7 @@ import tensorflow as tf
 
 IMG_SIZE = 224
 NUM_FEATURES = 7 * 7 * 1280
-NUM_CLASSES = 4
+NUM_CLASSES = 5
 
 
 class TransferLearningModel(tf.Module):

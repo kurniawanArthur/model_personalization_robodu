@@ -15,15 +15,15 @@
     ~ limitations under the License.
 -->
 <resources>
-    <string name="app_name">TFLite Model Personalization Demo App</string>
+    <string name="app_name">ROBO-DU Model Personalization</string>
     <string name="control_dialog_thread_button_minus">Decrease the number of threads used</string>
     <string name="control_dialog_thread_button_plus">Increase the number of threads used</string>
     <string name="label_inference_time">Inference Time</string>
     <string name="label_threads">Number of Threads</string>
     <string name="helper_dialog_title">How to use the app</string>
     <string name="helper_dialog_content">
-        1. There are 4 classes in the app represented by the 4 numbers
-        (1..4)\n\n
+        1. There are 5 classes in the app represented by the numbers
+        (1..5)\n\n
         2. Each number can be associated with a category of an object(e.g.
         car, fruit, etc…)\n\n
         3. Take at least 1 image to enable training. For the intended usage,
@@ -40,8 +40,8 @@
         6. Switch to the inference mode and point the camera to some object.
         Each class button will display the probability of which the object
         falls into that category and highlight the most probable one.\n\n
-        If training has been done well, the correct category will be
-        highlighted. If the object does not fall into any of the four
+    If training has been done well, the correct category will be
+    highlighted. If the object does not fall into any of the five
         categories trained, then the app will still try to highlight any one
         of the closest categories with its best guess.\n\n
         7. You can always switch back to the training mode and capture more
@@ -61,4 +61,46 @@
     <string name="tv_resume_training">Resume</string>
     <string name="tv_collect_sample">Collect sample</string>
     <string name="tv_icon_helper">\?</string>
+    <string name="tv_view_samples">View Samples</string>
+    <string name="tv_save_model">Save Model</string>
+    <string name="tv_load_model">Load Model</string>
+    <string name="tv_reset_model">Reset Model</string>
+    <string name="dialog_edit_class_name">Edit Class Name</string>
+    <string name="hint_class_name">Class Name</string>
+    <string name="class_name_required_hint">Enter class name</string>
+    <string name="error_empty_class_name">Class name cannot be empty</string>
+    <string name="toast_class_name_saved">Class name saved</string>
+    <string name="accessibility_edit_class">Edit class name</string>
+    <string name="class_label_placeholder">Class</string>
+    <string name="class_label_unset_template">%1$s • tap to name</string>
+    <string name="samples_count_placeholder">Samples: 0</string>
+    <string name="samples_count_format">Samples: %1$d</string>
+    <string name="action_save_model">Save Model</string>
+    <string name="action_manage_models">Manage Models</string>
+    <string name="action_new_model">New Model</string>
+    <string name="dialog_save_model_title">Save Personalized Model</string>
+    <string name="hint_model_name">Model name</string>
+    <string name="error_empty_model_name">Model name cannot be empty</string>
+    <string name="toast_model_saved">Model saved</string>
+    <string name="toast_model_save_failed">Unable to save model</string>
+    <string name="dialog_delete_model_title">Delete model?</string>
+    <string name="dialog_delete_model_message">Delete "%1$s"? This cannot be undone.</string>
+    <string name="btn_delete">Delete</string>
+    <string name="dialog_clear_models_title">Clear all models?</string>
+    <string name="dialog_clear_models_message">Remove all saved models from this device?</string>
+    <string name="btn_clear_all">Clear All</string>
+    <string name="toast_models_cleared">All models removed</string>
+    <string name="toast_model_deleted">Model deleted</string>
+    <string name="toast_model_delete_failed">Unable to delete model</string>
+    <string name="toast_model_loaded">Model loaded</string>
+    <string name="toast_model_load_failed">Failed to load model</string>
+    <string name="dialog_reset_model_title">Reset current model?</string>
+    <string name="dialog_reset_model_message">This will clear captured samples and reset the personalized weights.</string>
+    <string name="toast_model_reset">Model reset</string>
+    <string name="model_storage_usage">Storage: %.1f KB</string>
+    <string name="item_model_classes">Classes: %1$s</string>
+    <string name="item_model_meta">Samples: %1$d • Size: %2$d KB</string>
+    <string name="app_title">ROBO-DU</string>
+    <string name="app_subtitle">Model Personalization</string>
+    <string name="app_version">Enhanced v1.1</string>
 </resources>

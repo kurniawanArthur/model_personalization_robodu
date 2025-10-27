@@ -17,8 +17,10 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
     </style>
+
+    <style name="AppAlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog" />
 
     <style name="ClassButton" parent="@style/Widget.AppCompat.Button">
         <item name="android:layout_margin">10dp</item>

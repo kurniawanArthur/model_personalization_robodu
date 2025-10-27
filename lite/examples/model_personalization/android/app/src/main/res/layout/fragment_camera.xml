@@ -81,122 +81,262 @@
             android:textColor="@color/tfl_color_orange"
             app:layout_constraintBottom_toTopOf="@id/optionsLayout" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/optionsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/fr_camera_cl_button_classes_margin"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
-                android:id="@+id/llClassOne"
-                style="@style/ClassButton"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:id="@+id/layoutModelActions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@id/llClassTwo"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="1">
+                android:orientation="horizontal"
+                android:paddingBottom="12dp">
 
-                <TextView
+                <Button
+                    android:id="@+id/btnSaveModel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_class_one"
-                    android:textSize="@dimen/fr_camera_tv_classes_text_size"
-                    android:textStyle="bold" />
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/action_save_model"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/robo_du_green" />
 
-                <TextView
-                    android:id="@+id/tvNumberClassOne"
+                <Button
+                    android:id="@+id/btnManageModels"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/action_manage_models"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/robo_du_dark_gray" />
+
+                <Button
+                    android:id="@+id/btnNewModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_new_model"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/robo_du_red" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/llClassTwo"
-                style="@style/ClassButton"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:id="@+id/layoutClassTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@id/llClassThree"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/llClassOne"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="2">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/llClassOne"
+                    style="@style/ClassButton"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_class_two"
-                    android:textSize="@dimen/fr_camera_tv_classes_text_size"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvNumberClassTwo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvLabelClassOne"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/class_label_placeholder"
+                            android:textSize="@dimen/fr_camera_tv_classes_text_size"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/btnEditClassOne"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/accessibility_edit_class"
+                            android:src="@android:drawable/ic_menu_edit"
+                            app:tint="@color/robo_du_orange" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvNumberClassOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/samples_count_placeholder" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llClassTwo"
+                    style="@style/ClassButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvLabelClassTwo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/class_label_placeholder"
+                            android:textSize="@dimen/fr_camera_tv_classes_text_size"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/btnEditClassTwo"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/accessibility_edit_class"
+                            android:src="@android:drawable/ic_menu_edit"
+                            app:tint="@color/robo_du_orange" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvNumberClassTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/samples_count_placeholder" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llClassThree"
+                    style="@style/ClassButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvLabelClassThree"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/class_label_placeholder"
+                            android:textSize="@dimen/fr_camera_tv_classes_text_size"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/btnEditClassThree"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/accessibility_edit_class"
+                            android:src="@android:drawable/ic_menu_edit"
+                            app:tint="@color/robo_du_orange" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvNumberClassThree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/samples_count_placeholder" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/llClassThree"
-                style="@style/ClassButton"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:id="@+id/layoutClassBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@id/llClassFour"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/llClassTwo"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="3">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/llClassFour"
+                    style="@style/ClassButton"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_class_three"
-                    android:textSize="@dimen/fr_camera_tv_classes_text_size"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvNumberClassThree"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-            <LinearLayout
-                android:id="@+id/llClassFour"
-                style="@style/ClassButton"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/llClassThree"
-                app:layout_constraintTop_toTopOf="parent">
+                        <TextView
+                            android:id="@+id/tvLabelClassFour"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/class_label_placeholder"
+                            android:textSize="@dimen/fr_camera_tv_classes_text_size"
+                            android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                        <ImageButton
+                            android:id="@+id/btnEditClassFour"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/accessibility_edit_class"
+                            android:src="@android:drawable/ic_menu_edit"
+                            app:tint="@color/robo_du_orange" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvNumberClassFour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/samples_count_placeholder" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llClassFive"
+                    style="@style/ClassButton"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_class_four"
-                    android:textSize="@dimen/fr_camera_tv_classes_text_size"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvNumberClassFour"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvLabelClassFive"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/class_label_placeholder"
+                            android:textSize="@dimen/fr_camera_tv_classes_text_size"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/btnEditClassFive"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/accessibility_edit_class"
+                            android:src="@android:drawable/ic_menu_edit"
+                            app:tint="@color/robo_du_orange" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvNumberClassFive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/samples_count_placeholder" />
+                </LinearLayout>
             </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/btnStartTrain"
@@ -238,11 +378,30 @@
                 android:textSize="@dimen/fr_camera_tv_training_state_text_size_medium"
                 android:textStyle="bold" />
 
+            <ProgressBar
+                android:id="@+id/progressTraining"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:max="100"
+                android:progress="0" />
+
             <TextView
                 android:id="@+id/tv_loss_consumer_pause"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tvTrainingEpoch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="Epoch: 0" />
         </LinearLayout>
 
         <LinearLayout

@@ -24,8 +24,11 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
+import kotlinx.coroutines.launch
 import org.tensorflow.lite.examples.modelpersonalization.R
 
 private val PERMISSIONS_REQUIRED = arrayOf(Manifest.permission.CAMERA)
@@ -62,10 +65,12 @@ class PermissionsFragment : Fragment() {
     }
 
     private fun navigateToCamera() {
-        lifecycleScope.launchWhenStarted {
-            Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
-                PermissionsFragmentDirections.actionPermissionsToCamera()
-            )
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(
+                    PermissionsFragmentDirections.actionPermissionsToCamera()
+                )
+            }
         }
     }
 

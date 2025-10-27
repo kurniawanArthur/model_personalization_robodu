@@ -28,4 +28,13 @@
     <color name="btn_green">#00db8b</color>
     <color name="btn_gray">#7c8890</color>
     <color name="btn_yellow">#ede27e</color>
+    
+    <!-- ROBO-DU Branding Colors -->
+    <color name="robo_du_orange">#FFA500</color>
+    <color name="robo_du_red">#FF3B30</color>
+    <color name="robo_du_dark_gray">#333333</color>
+    <color name="robo_du_green">#4CAF50</color>
+    <color name="robo_du_primary">#FF6F00</color>
+    <color name="robo_du_accent">#FF9100</color>
+    <color name="robo_du_dark">#E65100</color>
 </resources>

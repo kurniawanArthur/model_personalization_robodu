@@ -16,11 +16,14 @@
 
 package org.tensorflow.lite.examples.modelpersonalization
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import java.util.TreeMap
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
+    
+    private val prefsHelper = PreferencesHelper(application)
     private val _numThread = MutableLiveData<Int>()
     val numThreads get() = _numThread
 
@@ -33,6 +36,22 @@ class MainViewModel : ViewModel() {
 
     private val _numberOfSamples = MutableLiveData(TreeMap<String, Int>())
     val numberOfSamples get() = _numberOfSamples
+
+    // Custom class names - Load from SharedPreferences
+    private val _classNames = MutableLiveData<Map<String, String>>()
+    val classNames get() = _classNames
+    
+    init {
+        // Load saved class names from SharedPreferences
+        _classNames.value = prefsHelper.getAllClassNames()
+    }
+
+    // Training progress
+    private val _trainingProgress = MutableLiveData<Int>(0)
+    val trainingProgress get() = _trainingProgress
+
+    private val _trainingEpoch = MutableLiveData<Int>(0)
+    val trainingEpoch get() = _trainingEpoch
 
     fun configModel(numThreads: Int) {
         _numThread.value = numThreads
@@ -64,6 +83,68 @@ class MainViewModel : ViewModel() {
     }
 
     fun getNumberOfSample() = numberOfSamples.value
+
+    // Custom class name methods
+    fun setClassName(classId: String, newName: String, markNamed: Boolean = true) {
+    // Save to SharedPreferences
+        prefsHelper.saveClassName(classId, newName)
+        if (markNamed) {
+            prefsHelper.setClassNamed(classId, true)
+    }
+
+        // Update LiveData
+        val currentMap = _classNames.value?.toMutableMap() ?: mutableMapOf()
+        currentMap[classId] = newName
+        _classNames.value = currentMap
+    }
+
+    fun getClassName(classId: String): String {
+        return prefsHelper.getClassName(classId)
+    }
+
+    fun isClassNamed(classId: String): Boolean = prefsHelper.isClassNamed(classId)
+
+    fun markClassNamed(classId: String, named: Boolean = true) {
+        prefsHelper.setClassNamed(classId, named)
+    }
+
+    fun resetSamples() {
+        _numberOfSamples.value = TreeMap()
+    }
+
+    fun saveCurrentModelName(name: String) {
+        prefsHelper.saveCurrentModelName(name)
+    }
+
+    fun getCurrentModelName(): String? = prefsHelper.getCurrentModelName()
+
+    fun saveModelAccuracy(accuracy: Float) {
+        prefsHelper.saveModelAccuracy(accuracy)
+    }
+
+    fun getModelAccuracy(): Float = prefsHelper.getModelAccuracy()
+
+    fun generateModelName(): String = prefsHelper.generateModelName()
+    
+    fun getActiveClasses(): Set<String> {
+        return prefsHelper.getActiveClasses()
+    }
+    
+    fun setClassActive(classId: String, active: Boolean) {
+        prefsHelper.setClassActive(classId, active)
+    }
+
+    // Training progress methods
+    fun setTrainingProgress(progress: Int) {
+        _trainingProgress.value = progress
+    }
+
+    fun setTrainingEpoch(epoch: Int) {
+        _trainingEpoch.value = epoch
+    }
+
+    fun getTrainingProgress() = trainingProgress.value ?: 0
+    fun getTrainingEpoch() = trainingEpoch.value ?: 0
 
     enum class TrainingState {
         PREPARE, TRAINING, PAUSE

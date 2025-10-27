@@ -1,0 +1,11 @@
+--2025-10-03 13:41:15--  https://gradle.org/next-steps/?version=9.1.0
+Resolving gradle.org (gradle.org)... 104.16.72.101, 104.16.73.101, 2606:4700::6810:4965, ...
+Connecting to gradle.org (gradle.org)|104.16.72.101|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html?version=9.1.0’
+
+index.html?version=9.1.0                                 [<=>                                                                                                                 ]       0  --.-KB/s               index.html?version=9.1.0                                 [ <=>                                                                                                                ]  37.17K  --.-KB/s    in 0.005s  
+
+2025-10-03 13:41:16 (7.87 MB/s) - ‘index.html?version=9.1.0’ saved [38057]
+

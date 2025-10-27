@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ~ Copyright 2022 The TensorFlow Authors. All Rights Reserved.
+    ~
+    ~ Licensed under the Apache License, Version 2.0 (the "License");
+    ~ you may not use this file except in compliance with the License.
+    ~ You may obtain a copy of the License at
+    ~
+    ~       http://www.apache.org/licenses/LICENSE-2.0
+    ~
+    ~ Unless required by applicable law or agreed to in writing, software
+    ~ distributed under the License is distributed on an "AS IS" BASIS,
+    ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    ~ See the License for the specific language governing permissions and
+    ~ limitations under the License.
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/camera_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/view_finder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scaleType="fillStart" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/fr_camera_control_layout_margin_top"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tf_out_line"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/btnTrainingMode"
+                style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/fr_camera_btn_mode_padding"
+                android:text="@string/radio_btn_training_mode"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/fr_camera_btn_mode_text_size" />
+
+            <RadioButton
+                android:id="@+id/btnInferenceMode"
+                style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/fr_camera_btn_mode_padding"
+                android:text="@string/radio_btn_inference_mode"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/fr_camera_btn_mode_text_size" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tvInferenceTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fr_camera_tv_inference_time_margin"
+            android:textColor="@color/tfl_color_orange"
+            app:layout_constraintBottom_toTopOf="@id/optionsLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/optionsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fr_camera_cl_button_classes_margin"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <!-- Notification TextView (auto-dismiss) -->
+            <TextView
+                android:id="@+id/tvNotification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/notif_welcome"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:background="#99000000"
+                android:padding="12dp"
+                android:gravity="center"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Class Selector Button (Dropdown) -->
+            <Button
+                android:id="@+id/btnClassSelector"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_add_class"
+                android:textAllCaps="false"
+                android:alpha="0.85"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/tvNotification"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Sample Count Display -->
+            <TextView
+                android:id="@+id/tvSampleInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="12sp"
+                android:textColor="@android:color/white"
+                android:background="#99000000"
+                android:padding="8dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/btnClassSelector"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Capture Sample Button (Large, Semi-transparent) -->
+            <Button
+                android:id="@+id/btnCaptureSample"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:text="📷 Capture Sample"
+                android:textSize="18sp"
+                android:textAllCaps="false"
+                android:alpha="0.85"
+                android:visibility="gone"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/tfl_color_primary"
+                app:layout_constraintTop_toBottomOf="@id/tvSampleInfo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/btnStartTrain"
+            style="@style/BigButton"
+            android:background="@drawable/btn_big_green"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/optionsLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_start_training"
+                android:textAllCaps="true"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/fr_camera_tv_training_state_text_size_large"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnPauseTrain"
+            style="@style/BigButton"
+            android:background="@drawable/btn_big_yellow"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/optionsLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/tvPauseTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_pause_training"
+                android:textAllCaps="true"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/fr_camera_tv_training_state_text_size_medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_loss_consumer_pause"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnResumeTrain"
+            style="@style/BigButton"
+            android:background="@drawable/btn_big_green"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/optionsLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_resume_training"
+                android:textAllCaps="true"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/fr_camera_tv_training_state_text_size_medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvLossConsumerResume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnCollectSample"
+            style="@style/BigButton"
+            android:background="@drawable/btn_big_gray"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/optionsLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_collect_sample"
+                android:textAllCaps="true"
+                android:textColor="@color/text_color_white"
+                android:textSize="@dimen/fr_camera_tv_training_state_text_size_large"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Inference Predictions Container -->
+        <LinearLayout
+            android:id="@+id/inferenceContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/optionsLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <!-- Inference Time Header -->
+            <TextView
+                android:id="@+id/tvInferenceHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📊 Real-time Predictions"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="#99000000"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_marginBottom="4dp" />
+
+            <!-- RecyclerView for predictions -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPredictions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="300dp"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/tfl_color_orange"
+        app:layout_anchorGravity="bottom" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
