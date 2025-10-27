@@ -1,0 +1,12 @@
+# Ignore Python virtual environments
+env/
+venv/
+.venv/
+*/env/
+*/venv/
+*/.venv/
+
+# Ignore compiled libraries
+*.so
+*.dll
+*.exe
